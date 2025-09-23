@@ -1,6 +1,8 @@
 package com.ankit.Smart.Contact.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
+    @NotBlank(message = "Name field is required")
+    @Size(min = 2,max = 25,message = "Name must be in  2 - 25 characters.")
     private String name;
     @Column(unique = true)
     private  String email;
