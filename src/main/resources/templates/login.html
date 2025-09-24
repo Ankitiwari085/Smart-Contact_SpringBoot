@@ -3,13 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <link th:href="@{/CSS/login.css}" rel="stylesheet" />
+
 </head>
 <body>
 <div th:replace="~{base :: layout(~{::section})}"/>
 <section>
-    <h1>Login Page</h1>
-    <h2 th:text="${title}"></h2>
-
+    <div class="container">
+        <div class="card card-container">
+             <img id="profile-img" class="profile-img-card" src="/Image/register.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" th:action="@{/do_login}" method="post">
+                <h3 class="text-center text-info"> Login</h3>
+                <div th:if="${param.error}" class="alert alert-danger">
+                    Invalid Username and Password
+                </div>
+                <div th:if="${param.logout}" class="alert alert-danger">
+                    You have been logged out !!
+                </div>
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            </form>
+            <a href="/signup" class="forgot-password">
+                Register Here
+            </a>
+        </div>
+    </div>
 </section>
 </body>
 </html>
