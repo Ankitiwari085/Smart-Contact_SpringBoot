@@ -1,0 +1,133 @@
+:root {
+  --sidebar-width: 250px;   /* change width as needed */
+  --nav-top: 60px;          /* set this to your base navbar height */
+  --transition: 300ms;
+}
+
+/* Reset small things */
+* { box-sizing: border-box; }
+
+/* Ensure body has room for base navbar — base layout should handle top spacing.
+   We don't set margin-top here because your base page already has the navbar.
+*/
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: var(--nav-top);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--nav-top));
+  background:#084547 !important;
+  color: #fff;
+  transform: translateX(-100%); /* hidden by default (mobile-first) */
+  transition: transform var(--transition) ease;
+  z-index: 1200;
+  overflow-y: auto;
+  padding-bottom: 40px;
+}
+
+/* When the body has class 'sidebar-open' the sidebar slides in */
+body.sidebar-open .sidebar {
+  transform: translateX(0);
+}
+
+/* Sidebar brand */
+.sidebar-brand {
+  font-weight: 700;
+  padding: 20px;
+  background: #084547 !important;
+  text-align: center;
+}
+
+/* Nav list */
+.sidebar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+.sidebar-nav li { border-bottom: 1px solid rgba(255,255,255,0.03); }
+.sidebar-nav a {
+  display: block;
+  padding: 14px 20px;
+  color: #e6eef8;
+  text-decoration: none;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+  will-change: transform, background, color;
+}
+.sidebar-nav a:hover {
+  background: rgba(255,255,255,0.03);
+  transform: translateX(8px);         /* subtle slide-right on hover */
+  color: #fff;
+}
+
+/* Toggle button (fixed so it's always visible) */
+.sidebar-toggle {
+  --btn-size: 42px;
+  position: fixed;
+  top: calc(var(--nav-top) + 14px);
+  left: 12px;                           /* when sidebar closed, small left offset */
+  width: var(--btn-size);
+  height: var(--btn-size);
+  border-radius: 6px;
+  background: #111827;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  z-index: 1250;
+  transition: left var(--transition) ease, transform var(--transition) ease, background 180ms;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* When sidebar is open, move the toggle to be "attached" to the right edge of the sidebar */
+body.sidebar-open .sidebar-toggle {
+  left: calc(var(--sidebar-width) + 12px);
+}
+
+/* Hover states */
+.sidebar-toggle:hover { background: #0f1724; transform: scale(1.03); }
+
+/* Content area - default (sidebar closed) */
+.content {
+  transition: margin-left var(--transition) ease;
+  padding: 20px;
+  margin-top: 0; /* base layout controls header spacing */
+  margin-left: 0;
+}
+
+/* On desktop (wider screens) push content when sidebar open */
+@media (min-width: 992px) {
+  body.sidebar-open .content {
+    margin-left: var(--sidebar-width);
+  }
+  /* default for wide screens: you might want the sidebar open by default.
+     If you want it open by default for desktop remove the `translateX(-100%)` default
+     or add `body.auto-open-sidebar` class from server-side. JS below will open on wide screens automatically.
+  */
+}
+
+/* Overlay for mobile (covers content when sidebar is open) */
+.sidebar-overlay {
+  position: fixed;
+  top: var(--nav-top);
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--nav-top));
+  background: rgba(0,0,0,0.45);
+  z-index: 1190;
+  display: none;
+  transition: opacity var(--transition);
+}
+body.sidebar-open .sidebar-overlay {
+  display: block;
+  opacity: 1;
+}
+
+/* Accessibility: hide overlay from keyboard when closed */
+.sidebar-overlay[aria-hidden="true"] { pointer-events: none; opacity: 0; }
+
+/* Make sure sidebar isn't overlapping top navbar visually (sidebar starts below navbar) */
+/* If your base navbar height is different, change --nav-top in :root or provide it in a parent style */

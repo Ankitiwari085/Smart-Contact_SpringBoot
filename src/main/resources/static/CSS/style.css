@@ -1,4 +1,5 @@
 
+
 body {
   background-color: #e2e2e2 !important;
 }
@@ -17,4 +18,109 @@ body {
     background:#FFFFFF;
 }
 
+/* ==== GENERAL RESET ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* ==== NAVBAR ==== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #084547;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+/* ==== SIDEBAR ==== */
+.sidebar {
+  position: fixed;
+  top: 60px; /* Below navbar */
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background: #084547;
+  transform: translateX(-250px); /* hidden by default */
+  transition: transform 0.3s ease;
+  z-index: 999;
+  padding-top: 20px;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+/* Sidebar links */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
+}
+
+.sidebar.active ul li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 12px 20px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s ease, padding-left 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  background: #34495e;
+  padding-left: 30px;
+}
+
+/* ==== PAGE CONTENT ==== */
+.content-wrapper {
+  margin-top: 60px; /* push below navbar */
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  padding: 20px;
+}
+
+.content-wrapper.shifted {
+  margin-left: 250px; /* shift with sidebar */
+}
+
+/* ==== TOGGLE BUTTON ==== */
+.sidebar-toggle {
+  position: fixed;
+  top: 70px; /* Below navbar */
+  left: 15px;
+  background: #2c3e50;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 1001;
+  border-radius: 4px;
+  font-size: 18px;
+  transition: background 0.3s ease, left 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background: #34495e;
+}
+
+/* Move toggle button when sidebar opens */
+.sidebar.active ~ .sidebar-toggle {
+  left: 265px;
+}
