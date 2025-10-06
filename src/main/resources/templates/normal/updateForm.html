@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/N_base :: layout(~{::section})}" >
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contact</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<section class="content-wrapper">
+    <div class="content">
+
+
+        <div class="card mr-3 ml-3">
+            <div class="card-body">
+                <h1 class="text-center">Update Contact</h1>
+                <div class="container-fluid mt-1">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <form action="#"
+                                  th:object="${contact}"
+                                  enctype="multipart/form-data"
+                                  method="post"
+                                  th:action="@{/user/process-update}"
+                                  class="mt-2">
+                                <input type="hidden" th:value="${contact.cId}" name="cId">
+                                <!--                                First Name Field-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text ">
+                                            <i class="bi bi-plus-square-fill"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="firstName" name="name" th:value="${contact.name}" class="form-control" required/>
+                                </div>
+                                <!--                                Nickname Field-->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text ">
+                                            <i class="bi bi-plus-square"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="nickName" name="nickName" th:value="${contact.nickName}" placeholder="Enter Nickname here.." class="form-control" required/>
+                                </div>
+                                <!--                                Phone Field-->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text ">
+                                            <i class="bi bi-telephone-x"></i>
+                                        </div>
+                                    </div>
+                                    <input type="number" id="number" name="number" th:value="${contact.number}" placeholder="Enter Phone Number here.." class="form-control" required min="10"/>
+                                </div>
+                                <!--                                Email Field-->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text ">
+                                            <i class="bi bi-envelope"></i>
+                                        </div>
+                                    </div>
+                                    <input type="email" id="email" name="email" th:value="${contact.email}" placeholder="Enter Email here.." class="form-control" required/>
+                                </div>
+
+                                <!--                                Work Field-->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text ">
+                                            <i class="bi bi-align-center"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="work" name="work" th:value="${contact.work}" placeholder="Enter work here.." class="form-control" required/>
+                                </div>
+
+                                <!--                               Contact  Discription-->
+                                <div class="form-group mt-3">
+                                    <textarea placeholder="Enter description here.." id="description" th:text="${contact.description}" name="description" class="form-control" rows="3"></textarea>
+
+                                </div>
+<!--                                 Image Shown -->
+                                <div class="container text-center">
+                                    <img class="img-fluid my_profile_image" th:src="@{'/Image/'+${contact.imageUrl}}" />
+                                </div>
+                                <!--                                Contact Image field-->
+                                <p class="text-secondary">Choose a new Image...</p>
+                                <div  class="custom-file">
+                                    <input type="file" name="profileImage"/>
+                                </div>
+                                <div class="container text-center">
+                                    <button class="btn btn-outline-primary">Save Contact</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.tiny.cloud/1/sx4djhavh0amecoc66dfbdk9gyrpcrce9wc4p8xzlshjcsfq/tinymce/8/tinymce.min.js"
+            referrerpolicy="origin" crossorigin="anonymous"></script>
+    <script>
+        tinymce.init({
+          selector: 'textarea',
+          plugins: [
+            // Core editing features
+            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+            // Your account includes a free trial of TinyMCE premium features
+            // Try the most popular premium features until Oct 14, 2025:
+            'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+          ],
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'ANKIT-TIWARI',
+          mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+          ],
+          ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+          uploadcare_public_key: 'e6fa89cec733e833bec2',
+        });
+    </script>
+
+</section>
+<!-- jQuery & Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
