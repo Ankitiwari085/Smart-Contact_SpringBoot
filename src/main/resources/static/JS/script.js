@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const contentWrapper = document.querySelector(".content-wrapper");
 
+
+
   toggleBtn.addEventListener("click", () => {
     sidebar.classList.toggle("active");
     contentWrapper.classList.toggle("shifted");

@@ -48,7 +48,7 @@ body {
   width: 250px;
   height: 100%;
   background: #084547;
-  transform: translateX(-250px); /* hidden by default */
+ transform: translateX(-250px);  /* hidden by default */
   transition: transform 0.3s ease;
   z-index: 999;
   padding-top: 20px;
@@ -124,6 +124,8 @@ body {
 .sidebar.active ~ .sidebar-toggle {
   left: 265px;
 }
+
+
 
 .my_profile_picture{
 height:35px;

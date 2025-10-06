@@ -30,7 +30,7 @@ public class HomeController {
 
     @GetMapping("/about")
     public String about(Model model){
-        model.addAttribute("title","THis is a About Page For Smart Contact");
+        model.addAttribute("title","This Page is under Process , Visit after sometime...");
         return "about";
     }
 
