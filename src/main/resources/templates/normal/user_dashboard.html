@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="~{normal/N_base :: layout(~{::section})}">
@@ -15,19 +17,19 @@
 <body>
 <section class="content-wrapper">
   <div class="content">
-      <div class="card">
-        <div class="card-body my-5">
-          <div class="container text-center">
-            <img class="my_profile_image"  th:src="@{'/Image/'+userDashboard.png}" alt="profileImage" />
-          </div>
-          <h1 class="text-center mt-3 text-secondary fst-italic font-weight-light">
-            Start Adding your contact on cloud...
-          </h1>
-          <a th:href="@{/user/add-contact}" class="btn btn-primary mt-4 text-uppercase text-center ">Add New Contact</a>
-
+    <div class="card">
+      <div class="card-body my-5">
+        <div class="container text-center">
+          <img class="my_profile_image"  th:src="@{'/Image/'+userDashboard.png}" alt="profileImage" />
         </div>
+        <h1 class="text-center mt-3 text-secondary fst-italic font-weight-light">
+          Start Adding your contact on cloud...
+        </h1>
+        <a th:href="@{/user/add-contact}" class="btn btn-primary mt-4 text-uppercase text-center ">Add New Contact</a>
 
       </div>
+
+    </div>
 
   </div>
 </section>

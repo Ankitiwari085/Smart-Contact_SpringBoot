@@ -5,11 +5,12 @@
     <title>About</title>
 </head>
 <body>
-<div th:replace="~{base :: layout(~{::section})}"/>
+<div th:replace="~{base :: layout(~{::section})}">
 <section>
     <h1>About Page</h1>
     <h2 th:text="${title}"></h2>
 
 </section>
+</div>
 </body>
 </html>

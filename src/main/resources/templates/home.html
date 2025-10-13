@@ -5,7 +5,7 @@
     <title>Home</title>
 </head>
 <body>
-<div th:replace="~{base :: layout(~{::section})}"/>
+<div th:replace="~{base :: layout(~{::section})}">
 <section class="banner d-flex justify-content-center align-items-center">
    <div class="text-center">
        <h1 class="font-weight-bold">Smart Contact </h1>
@@ -13,10 +13,13 @@
            We provide very efficient and smarter way of handling contacts. </p>
        <a th:href="@{/user/user_dashboard}" class="btn bg-primary btn-lg text-white">Get Start</a>
 
-<!--       <button class="btn bg-primary btn-lg text-white">Get Start</button>-->
 
    </div>
-    
+
 </section>
+</div>
 </body>
 </html>
+
+
+
